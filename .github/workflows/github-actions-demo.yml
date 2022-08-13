@@ -1,14 +1,29 @@
 name: Node.js Package
-
-on: [push]
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: ['16.x']
+    
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '16.x'
-    - run: make install
-    - run: make lint
+      # Клонирует репозиторий и переходит на актуальный коммит
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v2
+      
+      # Настраивает версию узла
+      # https://github.com/actions/setup-node
+      - name: Use Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        # Версия Node для настройки
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: NPM install
+        run: make install
+        
+      - name: Run ESLint
+        run: make lint
