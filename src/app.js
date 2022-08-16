@@ -1,5 +1,8 @@
 import onChange from 'on-change';
 import view from './view.js';
+import i18next from 'i18next';
+import resources from './local.js';
+import render from './render.js';
 
 const app = () => {
     const elements = {
@@ -12,6 +15,7 @@ const app = () => {
     }
 
     const state = {
+        lng: 'ru',
         feeds: [],
         posts: [],
         urls: [],
@@ -20,11 +24,16 @@ const app = () => {
         openPost: null,
     }
 
-    const watchedState = onChange(state, render(elements), {
+    i18next.init({
+        lng: state.lng,
+        resources,
+      });
+
+    const watchedState = onChange(state, render(elements, i18next), {
         ignoreKeys: ['urls'],
       });
     
-    view(watchedState, elements);
+    view(watchedState, elements, i18next);
 }
 
 export default app
