@@ -41,6 +41,7 @@
     "workbox-webpack-plugin": "^6.5.4"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "i18next": "^21.9.0",
     "on-change": "^4.0.1",

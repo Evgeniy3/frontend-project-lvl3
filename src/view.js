@@ -1,4 +1,15 @@
 import validator from './validator.js';
+import axios from 'axios';
+import parser from './parser.js';
+
+const makeRequest = (url) => {
+  const uri = encodeURIComponent(url);
+  const proxy = `https://allorigins.hexlet.app/get?disableCache=true&url=${uri}`;
+
+  return axios.get(proxy)
+    .then(({ data }) => data.contents)
+    .catch(() => { throw Error('errors.request'); });
+};
 
 const addUlListener = (state) => () => {
     const ul = document.getElementById('posts').querySelector('ul');
@@ -41,7 +52,7 @@ const view = (state, elements) => {
         const url = elements.input.value;
         e.preventDefault();
         validator(state)
-            .validator(url)
+            .validate(url)
             .then(() => formBlocked(state))
             .then(() => makeRequest(url))
             .then((res) => formUnlocked(state, res))
