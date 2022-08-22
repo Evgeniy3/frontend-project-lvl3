@@ -61,7 +61,7 @@ const view = (state, elements) => {
             .then(addUlListener(state))
             .then(setTimeout(() => observUpdate(state, url), 5000))
             .catch((err) => {
-                state.error = i18next.t(err.message);
+              state.error = i18next.t(err.message);
             });
     })
 } 
