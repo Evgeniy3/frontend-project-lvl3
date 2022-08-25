@@ -1,3 +1,5 @@
+/* eslint-disable prefer-promise-reject-errors */
+/* eslint-disable no-undef */
 const parseItem = (item) => ({
   id: item.querySelector('guid').textContent,
   title: item.querySelector('title').textContent,

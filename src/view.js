@@ -35,6 +35,7 @@ const extractUpdatedPosts = (state, { receivedPosts }) => {
   }
 };
 
+// Делегируем оброботку события одному ul, а не каждому li элементам
 const addUlListener = (state) => () => {
   const ul = document.getElementById('posts').querySelector('ul');
   ul.addEventListener('click', (e) => {
@@ -59,7 +60,6 @@ const addUlListener = (state) => () => {
 };
 
 const formBlocked = (state) => { state.readonly = true; };
-
 const formUnlocked = (state, res) => {
   state.readonly = false;
   return res;
@@ -71,9 +71,9 @@ const observUpdate = (state, url) => Promise.resolve(url)
   .then((parsedData) => extractUpdatedPosts(state, parsedData))
   .then(setTimeout(() => observUpdate(state, url), 5000));
 
-const view = (state, elements) => {
-  elements.form.addEventListener('sumbit', async (e) => {
-    const url = elements.input.value;
+const view = (state, elms, i18next) => {
+  elms.form.addEventListener('submit', async (e) => {
+    const url = elms.input.value;
     e.preventDefault();
     validator(state)
       .validate(url)

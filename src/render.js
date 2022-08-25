@@ -1,5 +1,6 @@
-/* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
+/* eslint-disable no-undef */
+
 const addElm = (elm) => document.createElement(elm);
 const addCls = (elm, ...classes) => elm.classList.add(...classes);
 

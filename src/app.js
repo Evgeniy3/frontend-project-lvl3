@@ -1,8 +1,9 @@
-import onChange from 'on-change';
+/* eslint-disable no-undef */
 import i18next from 'i18next';
-import view from './view.js';
-import resources from './local.js';
+import onChange from 'on-change';
 import render from './render.js';
+import resources from './locale/index.js';
+import view from './view.js';
 
 const app = () => {
   const elements = {
