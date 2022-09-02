@@ -35,7 +35,6 @@ const extractUpdatedPosts = (state, { receivedPosts }) => {
   }
 };
 
-// Делегируем оброботку события одному ul, а не каждому li элементам
 const addUlListener = (state) => () => {
   const ul = document.getElementById('posts').querySelector('ul');
   ul.addEventListener('click', (e) => {
@@ -45,7 +44,7 @@ const addUlListener = (state) => () => {
     state.openPost = selectedId;
     const selectedPost = state.posts.filter(({ id }) => id === selectedId);
     selectedPost[0].wasRead = true;
-    const { title, description, url } = selectedPost[0]; // [0] Из-за proxy
+    const { title, description, url } = selectedPost[0];
 
     const modal = document.getElementById('modal');
     const [modalTitle, modalContent] = [
@@ -59,11 +58,17 @@ const addUlListener = (state) => () => {
   });
 };
 
+window.addEventListener('load', () => {
+
+});
+
 const formBlocked = (state) => { state.readonly = true; };
 const formUnlocked = (state, res) => {
   state.readonly = false;
   return res;
 };
+
+const postsChild = document.getElementById('posts');
 
 const observUpdate = (state, url) => Promise.resolve(url)
   .then(() => makeRequest(url))
@@ -77,13 +82,24 @@ const view = (state, elms, i18next) => {
     e.preventDefault();
     validator(state)
       .validate(url)
+      .then(() => {
+        const loader = document.getElementById('loader');
+        loader.classList.remove('d-none');
+      })
       .then(() => formBlocked(state))
       .then(() => makeRequest(url))
       .then((res) => formUnlocked(state, res))
       .then(parser)
       .then((parsedData) => updateState(state, url, parsedData))
       .then(addUlListener(state))
-      .then(setTimeout(() => observUpdate(state, url), 5000))
+      .then(() => {
+        loader.classList.add('d-none');
+      })
+      .then(() => {
+        if (postsChild.childNodes.length > 0) {
+          setTimeout(() => observUpdate(state, url), 5000);
+        }
+      })
       .catch((err) => {
         state.error = i18next.t(err.message);
       });
