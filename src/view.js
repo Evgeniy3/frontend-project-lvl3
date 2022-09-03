@@ -58,10 +58,6 @@ const addUlListener = (state) => () => {
   });
 };
 
-window.addEventListener('load', () => {
-
-});
-
 const formBlocked = (state) => { state.readonly = true; };
 const formUnlocked = (state, res) => {
   state.readonly = false;
