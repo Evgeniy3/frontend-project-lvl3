@@ -9,3 +9,6 @@ link:
 
 lint: 
 	npx eslint . 
+
+server:
+	npm run server 	

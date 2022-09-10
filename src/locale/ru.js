@@ -1,30 +1,18 @@
-const ru = {
+export default {
   translation: {
-    success: 'RSS успешно загружен',
-    errors: {
-      empty: 'Не должно быть пустым',
-      url: 'Ссылка должна быть валидным URL',
-      uniq: 'RSS уже существует',
-      parse: 'Ресурс не содержит валидный RSS',
-      request: 'Ошибка сети',
+    urlError: 'Ссылка должна быть валидным URL',
+    urlExist: 'RSS уже существует',
+    urlLoadSuccess: 'RSS успешно загружен',
+    badRss: {
+      xmlParseEntityRef: 'Ресурс не содержит валидный RSS',
     },
-    trans: {
-      title: 'RSS агрегатор',
-      subTitle: 'Начните читать RSS сегодня! Это легко, это красиво.',
-      label: 'Ссылка RSS',
-      button: 'Добавить',
-      example: 'Пример: https://ru.hexlet.io/lessons.rss',
+    'Network Error': 'Ошибка сети',
+    posts: {
+      formTitle: 'Посты',
+      readButton: 'Просмотр',
     },
-    cards: {
-      feeds: 'Фиды',
-      posts: 'Посты',
-      button: 'Просмотр',
-    },
-    modal: {
-      read: 'Читать полностью',
-      close: 'Закрыть',
+    feeds: {
+      feedTitle: 'Фиды',
     },
   },
 };
-
-export default ru;

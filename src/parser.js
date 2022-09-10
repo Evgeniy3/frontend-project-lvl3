@@ -1,27 +1,24 @@
 /* eslint-disable prefer-promise-reject-errors */
 /* eslint-disable no-undef */
-const parseItem = (item) => ({
-  id: item.querySelector('guid').textContent,
-  title: item.querySelector('title').textContent,
-  description: item.querySelector('description').textContent,
-  url: item.querySelector('link').textContent,
-  wasRead: false,
-});
-
-export default (response) => {
-  try {
-    const parser = new DOMParser();
-    const dom = parser.parseFromString(response, 'text/xml');
-
-    const receivedFeed = {
-      title: dom.querySelector('title').textContent,
-      description: dom.querySelector('description').textContent,
+export default (loadData) => {
+  const parser = new DOMParser();
+  const dataFromUrl = parser.parseFromString(loadData.data.contents, 'text/xml');
+  const errorsOnPage = dataFromUrl.querySelector('parsererror');
+  if (errorsOnPage) {
+    throw new Error('badRss.xmlParseEntityRef');
+  } else {
+    const feed = {
+      title: dataFromUrl.querySelector('title').textContent,
+      description: dataFromUrl.querySelector('description').textContent,
     };
-    const items = [...dom.querySelectorAll('item')];
-    const receivedPosts = items.map(parseItem);
-
-    return { receivedFeed, receivedPosts };
-  } catch {
-    throw Error('errors.parse');
+    const postsData = dataFromUrl.querySelectorAll('item');
+    const posts = Array.from(postsData).map((item) => (
+      {
+        title: item.querySelector('title').textContent,
+        description: item.querySelector('description').textContent,
+        link: item.querySelector('link').textContent,
+      }
+    ));
+    return [feed, posts];
   }
 };
