@@ -30,9 +30,8 @@ const app = (i18) => {
       postData: [],
     },
     feeds: [],
-    posts: [{ uiState: [] }],
+    posts: [],
   }, render(elements, i18));
-
   mainListener(state, elements);
   modalListener(state, elements);
   updateRss(state);

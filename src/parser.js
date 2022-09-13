@@ -19,6 +19,6 @@ export default (loadData) => {
         link: item.querySelector('link').textContent,
       }
     ));
-    return [feed, posts];
+    return { feed, posts };
   }
 };

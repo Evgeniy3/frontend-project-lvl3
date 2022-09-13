@@ -14,7 +14,7 @@ export const mainListener = (state, elements) => {
     validateUrl(state.urlForm)
       .then((data) => loadUrl(data.url))
       .then((rss) => {
-        const [feed, posts] = parserRss(rss);
+        const { feed, posts } = parserRss(rss);
         state.urlForm.loadedUrl.push(state.urlForm.url);
         const addIdtoPosts = posts.map((item) => ({ ...item, id: _.uniqueId() }));
         state.feeds.push(feed);
@@ -30,12 +30,8 @@ export const mainListener = (state, elements) => {
 
 export const modalListener = (state, elements) => {
   elements.postsPlace.addEventListener('click', (item) => {
-    const [postsState] = state.posts;
     const postId = item.target.getAttribute('data-id');
     const postDataFromState = _.find(state.posts, ['id', postId]);
-    if (!postsState.uiState.includes(postId)) {
-      postsState.uiState.push(postId);
-    }
     if (postId) {
       state.modalForm.postData = {
         id: postId,
