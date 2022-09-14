@@ -3,4 +3,4 @@ coverage
 .vscode
 *.log
 *.swp
-dist
+/dist
