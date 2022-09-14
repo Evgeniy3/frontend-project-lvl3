@@ -52,7 +52,7 @@ const showPosts = (elements, value, i18) => {
     li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
     const href = document.createElement('a');
     // const typeOfTextPost = uiState.includes(post.id) ? 'fw-normal' : 'fw-bold';
-    // href.classList.add(typeOfTextPost);
+    href.classList.add('fw-bold');
     href.setAttribute('data-id', `${post.id}`);
     href.setAttribute('href', `${post.link}`);
     href.setAttribute('rel', 'noopener noreferrer');
