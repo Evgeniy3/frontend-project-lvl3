@@ -45,14 +45,14 @@ const handleModal = (elements, value) => {
 };
 
 const showPosts = (elements, value, i18) => {
-  const [...posts] = value.post;
-  const postsState = value.uiState;
+  const posts = value;
+  // console.log(postsState);
   const preparePosts = posts.map((post) => {
     const li = document.createElement('li');
     li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
     const href = document.createElement('a');
-    const typeOfTextPost = postsState.uiState.includes(post.id) ? 'fw-normal' : 'fw-bold';
-    href.classList.add(typeOfTextPost);
+    // const typeOfTextPost = uiState.includes(post.id) ? 'fw-normal' : 'fw-bold';
+    // href.classList.add(typeOfTextPost);
     href.setAttribute('data-id', `${post.id}`);
     href.setAttribute('href', `${post.link}`);
     href.setAttribute('rel', 'noopener noreferrer');
@@ -149,7 +149,8 @@ export const render = (elements, i18) => (path, value) => {
     case 'feeds':
       showFeeds(elements, value, i18);
       break;
-    case 'posts':
+    // case 'posts.uiState':
+    case 'posts.post':
       showPosts(elements, value, i18);
       break;
     case 'urlForm.status':
