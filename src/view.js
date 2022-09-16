@@ -37,6 +37,8 @@ const cleanForm = (elements, i18) => {
 };
 
 const handleModal = (elements, value) => {
+  const postOnPage = elements.postsPlace.querySelector(`[data-id="${value.id}"]`);
+  postOnPage.classList.replace('fw-bold', 'fw-normal');
   elements.modalTitle.textContent = value.title;
   elements.modalBody.textContent = value.body;
   elements.modalReadButton.setAttribute('href', value.url);
@@ -49,7 +51,6 @@ const showPosts = (elements, value, i18) => {
     li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
     const href = document.createElement('a');
     href.classList.add('fw-bold');
-    href.classList.add('post-link');
     href.setAttribute('data-id', `${post.id}`);
     href.setAttribute('href', `${post.link}`);
     href.setAttribute('rel', 'noopener noreferrer');
