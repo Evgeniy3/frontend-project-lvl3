@@ -30,7 +30,7 @@ export const mainListener = (state, elements) => {
 
 export const modalListener = (state, elements) => {
   elements.postsPlace.addEventListener('click', (item) => {
-    const postsState = state.posts.uiState;
+    const postsState = state.posts.statePosts;
     const postId = item.target.getAttribute('data-id');
     const postDataFromState = _.find(state.posts.post, ['id', postId]);
     if (!postsState.includes(postId)) {

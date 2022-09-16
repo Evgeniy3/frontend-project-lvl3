@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
 import i18n from 'i18next';
 import onChange from 'on-change';
@@ -31,8 +32,8 @@ const app = (i18) => {
     },
     feeds: [],
     posts: {
+      statePosts: [],
       post: [],
-      uiState: [],
     },
   }, render(elements, i18));
   mainListener(state, elements);

@@ -19,4 +19,4 @@ make install
 ## Запуск локального сервера
 
 ```sh
-make server
+make start

@@ -10,5 +10,5 @@ link:
 lint: 
 	npx eslint . 
 
-server:
+start:
 	npm run server 	
