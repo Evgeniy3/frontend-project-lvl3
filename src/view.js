@@ -43,7 +43,6 @@ const handleModal = (elements, value) => {
 };
 
 const showPosts = (elements, value, i18) => {
-  console.log(postsState);
   const posts = value;
   const preparePosts = posts.map((post) => {
     const li = document.createElement('li');
@@ -139,7 +138,7 @@ const handleProcessState = (elements, processState, i18) => {
   }
 };
 
-export const render = (state, elements, i18) => (path, value) => {
+export const render = (elements, i18) => (path, value) => {
   switch (path) {
     case 'urlForm.errors':
       handleErrors(elements, value, i18);
@@ -148,7 +147,7 @@ export const render = (state, elements, i18) => (path, value) => {
       showFeeds(elements, value, i18);
       break;
     case 'posts.post':
-      showPosts(state, elements, value, i18);
+      showPosts(elements, value, i18);
       break;
     case 'urlForm.status':
       handleProcessState(elements, value, i18);
