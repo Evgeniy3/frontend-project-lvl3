@@ -31,10 +31,7 @@ const app = (i18) => {
       postData: [],
     },
     feeds: [],
-    posts: {
-      statePosts: [],
-      post: [],
-    },
+    posts: [{ uiState: new Set() }],
   }, render(elements, i18));
   mainListener(state, elements);
   modalListener(state, elements);

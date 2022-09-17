@@ -17,9 +17,9 @@ export const updateRss = (state) => {
       const handleEachFeed = loadUrl(link)
         .then((data) => {
           const posts = parserRss(data);
-          const diff = _.differenceBy(posts, state.posts.post, 'title');
+          const diff = _.differenceBy(posts, state.posts, 'title');
           const addIdtodiff = diff.map((item) => ({ ...item, id: _.uniqueId() }));
-          state.posts.post.push(...addIdtodiff);
+          state.posts.push(...addIdtodiff);
         });
       return handleEachFeed;
     }))
