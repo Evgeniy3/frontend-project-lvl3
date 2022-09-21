@@ -20,7 +20,7 @@ const app = (i18) => {
     modalReadButton: document.querySelector('[role="button"]'),
   };
 
-  const state = onChange({
+  const state = {
     urlForm: {
       status: '',
       loadedUrl: [],
@@ -31,11 +31,14 @@ const app = (i18) => {
       postData: [],
     },
     feeds: [],
-    posts: [{ uiState: new Set() }],
-  }, render(elements, i18));
-  mainListener(state, elements);
-  modalListener(state, elements);
-  updateRss(state);
+    posts: [],
+    uiState: new Set(),
+  };
+
+  const watchedState = onChange(state, render(state, elements, i18));
+  mainListener(watchedState, elements);
+  modalListener(watchedState, elements);
+  updateRss(watchedState);
 };
 
 const runApp = () => {

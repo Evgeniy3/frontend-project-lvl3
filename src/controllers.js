@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
 import _ from 'lodash';
-import { validateUrl } from './view.js';
+import { validateUrl } from './validate.js';
 import { loadUrl } from './utils.js';
 import parserRss from './parser.js';
 
@@ -30,12 +30,11 @@ export const mainListener = (state, elements) => {
 
 export const modalListener = (state, elements) => {
   elements.postsPlace.addEventListener('click', (item) => {
-    const [postsState] = state.posts;
+    const postsState = state.uiState;
     const postId = item.target.getAttribute('data-id');
     const postDataFromState = _.find(state.posts, ['id', postId]);
-    if (!postsState.uiState.has(postId)) {
-      postsState.uiState.add(postId);
-      console.log(postsState);
+    if (!postsState.has(postId)) {
+      postsState.add(postId);
     }
     if (postId) {
       state.modalForm.postData = {
