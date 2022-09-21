@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const validateUrl = (urlForm) => {
+const validateUrl = (urlForm) => {
   yup.setLocale({
     string: {
       url: 'urlError',
@@ -14,3 +14,5 @@ export const validateUrl = (urlForm) => {
   });
   return schema.validate(urlForm, { abortEarly: false });
 };
+
+export default validateUrl;
