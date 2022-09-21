@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
 import _ from 'lodash';
-import { validateUrl } from './validate.js';
+import validateUrl from './validate.js';
 import { loadUrl } from './utils.js';
 import parserRss from './parser.js';
 
